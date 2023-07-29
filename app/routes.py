@@ -15,14 +15,20 @@ def predict():
     # Get data from request
     image_string = request.json['image']
     # Decode image
-    image = base64_to_pil(image_string)
+    image = base64_to_pil(image_string).rotate(270)
     # Predict image
     result = predict_pil_image(image)
     # Return result
-    return "Predicted!"
+    return jsonify({
+        "predicts": result,
+        "original_size": image.size
+    })
 
 
 # {domain}/api/recommend/:label_id
 @api_bp.route('/recommend/<label_id>', methods=['GET'])
 def recommend(label_id):
     return f"Recommended! {label_id}"
+
+
+# {domain}/api/message

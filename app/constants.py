@@ -1,1 +1,1 @@
-YOLO_MODEL = "yolov8n.pt"
+YOLO_MODEL = "best.pt"
