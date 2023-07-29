@@ -4,7 +4,7 @@ from .yolo import yolo
 from PIL import Image
 from torch import Tensor
 import openai
-from .utils import read_api_key
+import os
 
 
 def predict_pil_image(image: Image) -> list[dict[str, Any]]:
@@ -75,7 +75,7 @@ def query_from_firebase(label: str) -> list[dict[str, Any]]:
     return recommends
 
 
-openai.api_key = read_api_key("./app/credentials/openai.txt")
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 
 def get_response(prompt: str):
