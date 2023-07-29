@@ -3,6 +3,7 @@ from typing import Any
 from .yolo import yolo
 from PIL import Image
 from torch import Tensor
+import openai
 
 
 def predict_pil_image(image: Image) -> list[dict[str, Any]]:
@@ -68,3 +69,14 @@ def query_from_firebase(label: str) -> list[dict[str, Any]]:
                     ans.append(temp)
 
     return ans
+
+openai.api_key = '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'
+def get_response(prompt: str):
+    response = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt,
+        temperature=0.7,
+        max_tokens=150
+    )
+
+    return response

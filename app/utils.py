@@ -14,7 +14,7 @@ io = SocketIO()
 
 # Firebase initialize
 cred = credentials.Certificate(
-    "./app/credentials/green-vision-42477-firebase-adminsdk-flci8-8692175679.json")
+    "./app/credentials/green-vision-42477-firebase-adminsdk-flci8-9c4d888de5.json")
 firebase_admin.initialize_app(
     cred, {"storageBucket": "gs://green-vision-42477.appspot.com"})
 # Firebase firestore
