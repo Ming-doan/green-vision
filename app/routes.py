@@ -1,7 +1,8 @@
 from flask import Blueprint
 from .utils import io, base64_to_pil
-from .logics import predict_pil_image
+from .logics import predict_pil_image, query_from_firebase
 from flask import request, jsonify
+
 
 
 # Blueprint for api routes
@@ -26,9 +27,12 @@ def predict():
 
 
 # {domain}/api/recommend/:label_id
-@api_bp.route('/recommend/<label_id>', methods=['GET'])
-def recommend(label_id):
-    return f"Recommended! {label_id}"
-
-
-# {domain}/api/message
+@api_bp.route('/recommend', methods=['POST'])
+def recommend():
+    # Get name of trash
+    name = request.get_json()['name']
+    # Query
+    results = query_from_firebase(name)
+    return jsonify({
+        "recommends": results
+    })
