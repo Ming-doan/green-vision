@@ -19,11 +19,12 @@ def predict_pil_image(image: Image) -> list[dict[str, Any]]:
     # Get boxs result
     boxs_result = []
     for box in boxs:
+        print(box)
         result_conf = box[4].item()
         if result_conf > 0.25:
             # Get the center point
-            center_x = (box[0] + box[2] // 2).item()
-            center_y = (box[1] + box[3] // 2).item()
+            center_x = box[0].item()
+            center_y = box[1].item()
 
             boxs_result.append({
                 "pos": [int(center_x), int(center_y)],

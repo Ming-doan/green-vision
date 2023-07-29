@@ -12,3 +12,7 @@ def index():
 
 # Register blueprint
 app.register_blueprint(api_bp)
+
+
+if __name__ == '__main__':
+    app.run(host='172.16.255.206')
