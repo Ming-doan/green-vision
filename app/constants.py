@@ -1,0 +1,1 @@
+YOLO_MODEL = "yolov8n.pt"
