@@ -1,5 +1,5 @@
 from flask import Blueprint
-from .utils import io, base64_to_pil
+from .utils import base64_to_pil
 from .logics import predict_pil_image, query_from_firebase, get_response
 from flask import request, jsonify
 

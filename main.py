@@ -1,4 +1,4 @@
-from app.utils import create_app, io
+from app.utils import create_app
 from app.routes import api_bp
 
 app = create_app()
@@ -12,7 +12,3 @@ def index():
 
 # Register blueprint
 app.register_blueprint(api_bp)
-
-
-if __name__ == '__main__':
-    io.run(app)

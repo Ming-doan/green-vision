@@ -1,15 +1,10 @@
 from flask import Flask
 from flask_cors import CORS
-from flask_socketio import SocketIO
 from PIL import Image
 from io import BytesIO
 import base64
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
-
-
-# Socketio
-io = SocketIO()
 
 
 # Firebase initialize
@@ -27,9 +22,6 @@ def create_app():
 
     # CORS
     CORS(app, resources={r'/*': {'origins': '*'}})
-
-    # Socket io
-    io.init_app(app, cors_allowed_origins="*")
 
     return app
 
