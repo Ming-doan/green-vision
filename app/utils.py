@@ -5,7 +5,7 @@ from PIL import Image
 from io import BytesIO
 import base64
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, firestore, storage
 
 
 # Socketio
@@ -14,7 +14,7 @@ io = SocketIO()
 
 # Firebase initialize
 cred = credentials.Certificate("./app/credentials/green-vision-42477-firebase-adminsdk-flci8-9c4d888de5.json")
-firebase_admin.initialize_app(cred)
+firebase_admin.initialize_app(cred, {"storageBucket": "gs://green-vision-42477.appspot.com"})
 # Firebase firestore
 db = firestore.client()
 
