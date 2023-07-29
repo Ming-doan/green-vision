@@ -38,3 +38,9 @@ def create_app():
 def base64_to_pil(image_string):
     image_bytes = BytesIO(base64.b64decode(image_string))
     return Image.open(image_bytes)
+
+
+def read_api_key(file_name: str):
+    with open(file_name) as f:
+        api_plain_text = f.read()
+    return api_plain_text.split("=")[1].strip()

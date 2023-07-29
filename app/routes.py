@@ -1,8 +1,7 @@
 from flask import Blueprint
 from .utils import io, base64_to_pil
-from .logics import predict_pil_image, query_from_firebase
+from .logics import predict_pil_image, query_from_firebase, get_response
 from flask import request, jsonify
-
 
 
 # Blueprint for api routes
@@ -21,8 +20,8 @@ def predict():
     result = predict_pil_image(image)
     # Return result
     return jsonify({
-        "predicts": result,
-        "original_size": image.size
+        "original_size": image.size,
+        "predicts": result
     })
 
 
@@ -35,4 +34,14 @@ def recommend():
     results = query_from_firebase(name)
     return jsonify({
         "recommends": results
+    })
+
+
+@api_bp.route('/message', methods=['POST'])
+def generate_text():
+    prompt = request.get_json()['prompt']
+
+    response = get_response(prompt)
+    return jsonify({
+        'generated-text': response['choices']
     })
