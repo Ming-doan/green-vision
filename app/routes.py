@@ -43,5 +43,5 @@ def generate_text():
 
     response = get_response(prompt)
     return jsonify({
-        'generated-text': response['choices']
+        'generated_text': response['choices'][0]['text'].replace('\n', '')
     })
